@@ -99,16 +99,31 @@ public class NewsFeedActivity extends AppCompatActivity implements LoaderManager
     //on create loader
     @Override
     public Loader<List<NewsFeed>> onCreateLoader(int i, Bundle bundle) {
+        return new NewsFeedLoader(this, GUARDIAN_REQUEST_URL);
     }
 
     //on load finish
     @Override
-    public void onLoadFinished(Loader<List<NewsFeed>> loader, List<NewsFeed> earthquakes) {
+    public void onLoadFinished(Loader<List<NewsFeed>> loader, List<NewsFeed> newsFeeds) {
+        //hide loading indicator when data is ready
+        View loadingIndicator = findViewById(R.id.loading_spinner);
+        loadingIndicator.setVisibility(View.GONE);
 
+        //set text for no news founded
+        mEmptyStateTextView.setText(R.string.no_news);
+        // Clear the adapter of previous earthquake data
+        mAdapter.clear();
+        // If there is a valid list of {@link NewsFeed}s, then add them to the adapter's
+        // data set. This will trigger the ListView to update.
+        if (newsFeeds != null && !newsFeeds.isEmpty()) {
+            mAdapter.addAll(newsFeeds);
+        }
     }
 
     //on loader reset
     @Override
     public void onLoaderReset(Loader<List<NewsFeed>> loader) {
+        // Loader reset, so we can clear out our existing data.
+        mAdapter.clear();
     }
 }
