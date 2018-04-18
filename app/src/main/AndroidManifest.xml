@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.newsapp">
 
+    <!--add permision to the internet-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--add permision to the network state-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
