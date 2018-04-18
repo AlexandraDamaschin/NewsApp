@@ -147,7 +147,7 @@ public class QueryUtils {
                 JSONObject currentEarthquake = newsFeedArray.getJSONObject(i);
 
                 //extract json array for properties
-                JSONObject properties = currentEarthquake.getJSONObject("properties");
+                JSONObject properties = currentEarthquake.getJSONObject("results");
 
                 //extract value for mag
                 String title = properties.getString("webTitle");
