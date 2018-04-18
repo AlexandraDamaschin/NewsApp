@@ -12,7 +12,7 @@ public class NewsFeedLoader extends AsyncTaskLoader<List<NewsFeed>> {
     private String mUrl;
 
     //Constructor
-    public EarthquakeLoader(Context context, String url) {
+    public NewsFeedLoader(Context context, String url) {
         super(context);
         mUrl = url;
     }
