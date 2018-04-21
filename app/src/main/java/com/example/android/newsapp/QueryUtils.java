@@ -84,7 +84,7 @@ public class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the newsFeed JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -121,13 +121,13 @@ public class QueryUtils {
      * Return a list of {@link NewsFeed} objects that has been built up from
      * parsing a JSON response.
      */
-    public static List<NewsFeed> extractFeatureFromJson(String earthquakeJSON) {
+    public static List<NewsFeed> extractFeatureFromJson(String newsFeedJSON) {
         // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(earthquakeJSON)) {
+        if (TextUtils.isEmpty(newsFeedJSON)) {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding earthquakes to
+        // Create an empty ArrayList that we can start adding newsFeeds to
         List<NewsFeed> newsFeeds = new ArrayList<>();
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
@@ -136,30 +136,34 @@ public class QueryUtils {
         try {
 
             //create json object
-            JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
+            JSONObject baseJsonResponse = new JSONObject(newsFeedJSON);
 
             //extract json array for features
             JSONArray newsFeedArray = baseJsonResponse.getJSONArray("response");
 
             // For each new in the newsFeedArray, create an {@link NewsFeed} object
             for (int i = 0; i < newsFeedArray.length(); i++) {
-                //Get a single earthquake
-                JSONObject currentEarthquake = newsFeedArray.getJSONObject(i);
+                //Get a single newsFeed
+                JSONObject currentNewsFeed = newsFeedArray.getJSONObject(i);
 
                 //extract json array for properties
-                JSONObject properties = currentEarthquake.getJSONObject("results");
+                JSONObject properties = currentNewsFeed.getJSONObject("results");
 
                 //extract value for mag
                 String title = properties.getString("webTitle");
+                Log.d("webTitle", "Value: " + title);
 
                 //extract value for time
                 String section = properties.getString("sectionName");
+                Log.d("sectionName", "Value: " + section);
 
                 //extract value for place
                 long timeInMilliseconds = properties.getLong("webPublicationDate");
+                Log.d("webPublicationDate", "Value: " + timeInMilliseconds);
 
                 //extract url
                 String url = properties.getString("webUrl");
+                Log.d("webUrl", "Value: " + url);
 
                 //create new object with mag, time and location for the response
                 NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url);
@@ -173,7 +177,7 @@ public class QueryUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the NewsFeed JSON results", e);
         }
 
         // Return the list of newsFeeds
