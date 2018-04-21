@@ -61,7 +61,7 @@ public class NewsFeedActivity extends AppCompatActivity implements LoaderManager
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
                 Uri newsFeedUri = Uri.parse(currentNewsFeed.getUrl());
 
-                // Create a new intent to view the earthquake URI
+                // Create a new intent to view the newsFeed URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsFeedUri);
 
                 // Send the intent to launch a new activity
@@ -111,7 +111,7 @@ public class NewsFeedActivity extends AppCompatActivity implements LoaderManager
 
         //set text for no news founded
         mEmptyStateTextView.setText(R.string.no_news);
-        // Clear the adapter of previous earthquake data
+        // Clear the adapter of previous newsFeed data
         mAdapter.clear();
         // If there is a valid list of {@link NewsFeed}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
