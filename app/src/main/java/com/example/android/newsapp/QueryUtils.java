@@ -140,7 +140,8 @@ public class QueryUtils {
 
             //extract json array for features
             JSONArray newsFeedArray = baseJsonResponse.getJSONArray("response");
-
+            Log.d("response", "Value: " + newsFeedArray);
+            
             // For each new in the newsFeedArray, create an {@link NewsFeed} object
             for (int i = 0; i < newsFeedArray.length(); i++) {
                 //Get a single newsFeed
