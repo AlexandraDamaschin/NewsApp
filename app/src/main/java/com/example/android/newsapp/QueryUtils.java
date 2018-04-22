@@ -138,31 +138,32 @@ public class QueryUtils {
             //create json object
             JSONObject baseJsonResponse = new JSONObject(newsFeedJSON);
 
-            //extract json array for features
+            //extract json array for response
             JSONArray newsFeedArray = baseJsonResponse.getJSONArray("response");
             Log.d("response", "Value: " + newsFeedArray);
-            
+
             // For each new in the newsFeedArray, create an {@link NewsFeed} object
             for (int i = 0; i < newsFeedArray.length(); i++) {
                 //Get a single newsFeed
                 JSONObject currentNewsFeed = newsFeedArray.getJSONObject(i);
 
-                //extract json array for properties
+                //extract json array for results
                 JSONObject properties = currentNewsFeed.getJSONObject("results");
+                Log.d("results", "Value: " + properties);
 
-                //extract value for mag
+                //extract value for webTitle
                 String title = properties.getString("webTitle");
                 Log.d("webTitle", "Value: " + title);
 
-                //extract value for time
+                //extract value for sectionName
                 String section = properties.getString("sectionName");
                 Log.d("sectionName", "Value: " + section);
 
-                //extract value for place
+                //extract value for webPublicationDate
                 long timeInMilliseconds = properties.getLong("webPublicationDate");
                 Log.d("webPublicationDate", "Value: " + timeInMilliseconds);
 
-                //extract url
+                //extract webUrl
                 String url = properties.getString("webUrl");
                 Log.d("webUrl", "Value: " + url);
 
