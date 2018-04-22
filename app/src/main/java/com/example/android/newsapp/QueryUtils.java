@@ -139,8 +139,12 @@ public class QueryUtils {
             JSONObject baseJsonResponse = new JSONObject(newsFeedJSON);
 
             //extract json array for response
-            JSONArray newsFeedArray = baseJsonResponse.getJSONArray("response");
-            Log.d("response", "Value: " + newsFeedArray);
+            JSONObject response = baseJsonResponse.getJSONObject("response");
+            Log.d("response", "Value: " + response);
+
+            //extract jsonArray associated with the key result
+            //which represent a list of features
+            JSONArray newsFeedArray= response.getJSONArray("results");
 
             // For each new in the newsFeedArray, create an {@link NewsFeed} object
             for (int i = 0; i < newsFeedArray.length(); i++) {
@@ -148,23 +152,23 @@ public class QueryUtils {
                 JSONObject currentNewsFeed = newsFeedArray.getJSONObject(i);
 
                 //extract json array for results
-                JSONObject properties = currentNewsFeed.getJSONObject("results");
-                Log.d("results", "Value: " + properties);
+                //JSONObject properties = currentNewsFeed.getJSONObject("results");
+               // Log.d("results", "Value: " + properties);
 
                 //extract value for webTitle
-                String title = properties.getString("webTitle");
+                String title = currentNewsFeed.getString("webTitle");
                 Log.d("webTitle", "Value: " + title);
 
                 //extract value for sectionName
-                String section = properties.getString("sectionName");
+                String section = currentNewsFeed.getString("sectionName");
                 Log.d("sectionName", "Value: " + section);
 
                 //extract value for webPublicationDate
-                long timeInMilliseconds = properties.getLong("webPublicationDate");
+                long timeInMilliseconds = currentNewsFeed.getLong("webPublicationDate");
                 Log.d("webPublicationDate", "Value: " + timeInMilliseconds);
 
                 //extract webUrl
-                String url = properties.getString("webUrl");
+                String url = currentNewsFeed.getString("webUrl");
                 Log.d("webUrl", "Value: " + url);
 
                 //create new object with mag, time and location for the response
