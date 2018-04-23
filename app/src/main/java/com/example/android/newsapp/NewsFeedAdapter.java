@@ -52,6 +52,9 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
 
     //implemented methods
 
+    //date as
+    //2018-04-22T18:03:48Z
+
     /**
      * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
      */
