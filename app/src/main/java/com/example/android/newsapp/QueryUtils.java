@@ -164,7 +164,7 @@ public class QueryUtils {
                 Log.d("sectionName", "Value: " + section);
 
                 //extract value for webPublicationDate
-                long timeInMilliseconds = currentNewsFeed.getLong("webPublicationDate");
+                String timeInMilliseconds = currentNewsFeed.getString("webPublicationDate");
                 Log.d("webPublicationDate", "Value: " + timeInMilliseconds);
 
                 //extract webUrl

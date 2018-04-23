@@ -4,11 +4,11 @@ public class NewsFeed {
     //variables needed
     private String mTitle;
     private String mSection;
-    private long mTimeInMilliseconds;
+    private String mTimeInMilliseconds;
     private String mUrl;
 
     //constructor
-    public NewsFeed(String title, String section, long timeInMilliseconds, String url) {
+    public NewsFeed(String title, String section, String timeInMilliseconds, String url) {
         mTitle = title;
         mSection = section;
         mTimeInMilliseconds = timeInMilliseconds;
@@ -26,7 +26,7 @@ public class NewsFeed {
     }
 
     //get date
-    public long getTimeInMilliseconds() {
+    public String getTimeInMilliseconds() {
         return mTimeInMilliseconds;
     }
 
