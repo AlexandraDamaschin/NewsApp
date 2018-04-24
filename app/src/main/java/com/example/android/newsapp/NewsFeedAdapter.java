@@ -43,6 +43,7 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
         String originalDate = currentNewsFeed.getTimeInMilliseconds();
         String date;
         String time;
+
         // Check whether the originalLocation string contains the " of " text
         if (originalDate.contains(DATE_SEPARATOR)) {
             //split string based on of in the name
