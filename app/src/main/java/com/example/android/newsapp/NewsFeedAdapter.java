@@ -13,6 +13,10 @@ import java.util.List;
 
 public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
 
+    //2018-04-22T18:03:48Z
+    // date separator: T
+    private static final String DATE_SEPARATOR = "T";
+
     public NewsFeedAdapter(Context context, List<NewsFeed> newsFeeds) {
         super(context, 0, newsFeeds);
     }
