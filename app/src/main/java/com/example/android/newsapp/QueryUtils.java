@@ -144,16 +144,12 @@ public class QueryUtils {
 
             //extract jsonArray associated with the key result
             //which represent a list of features
-            JSONArray newsFeedArray= response.getJSONArray("results");
+            JSONArray newsFeedArray = response.getJSONArray("results");
 
             // For each new in the newsFeedArray, create an {@link NewsFeed} object
             for (int i = 0; i < newsFeedArray.length(); i++) {
                 //Get a single newsFeed
                 JSONObject currentNewsFeed = newsFeedArray.getJSONObject(i);
-
-                //extract json array for results
-                //JSONObject properties = currentNewsFeed.getJSONObject("results");
-               // Log.d("results", "Value: " + properties);
 
                 //extract value for webTitle
                 String title = currentNewsFeed.getString("webTitle");
@@ -171,13 +167,12 @@ public class QueryUtils {
                 String url = currentNewsFeed.getString("webUrl");
                 Log.d("webUrl", "Value: " + url);
 
-                //create new object with mag, time and location for the response
+                //create new object with title, section, timeInMilliseconds and url for the response
                 NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url);
 
                 //add new object to the list
                 newsFeeds.add(newsFeed);
             }
-
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
