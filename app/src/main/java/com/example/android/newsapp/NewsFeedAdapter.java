@@ -41,15 +41,15 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
 
         //get date as 2018-04-22T18:03:48Z
         String originalDate = currentNewsFeed.getTimeInMilliseconds();
-        String date;
-        String time;
+        String date= "";
+        String time= "";
 
         // Check whether the originalLocation string contains the " of " text
         if (originalDate.contains(DATE_SEPARATOR)) {
             //split string based on of in the name
             String[] parts = originalDate.split(DATE_SEPARATOR);
             // DATE offset should be " 2018-04-22" + "T" --> "18:03:48"
-            date = parts[0] + DATE_SEPARATOR;
+            date = parts[0];
             //time: 18:03:48
             time = parts[1];
         }
