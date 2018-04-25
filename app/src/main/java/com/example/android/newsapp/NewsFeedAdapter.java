@@ -41,8 +41,8 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
 
         //get date as 2018-04-22T18:03:48Z
         String originalDate = currentNewsFeed.getTimeInMilliseconds();
-        String date= "";
-        String time= "";
+        String date = "";
+        String time = "";
 
         // Check whether the originalLocation string contains the " of " text
         if (originalDate.contains(DATE_SEPARATOR)) {
@@ -56,12 +56,13 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
 
         //find date
         TextView dateLocationView = (TextView) listItemView.findViewById(R.id.date);
-        dateLocationView.setText(currentNewsFeed.getTimeInMilliseconds() );
+        dateLocationView.setText(currentNewsFeed.getTimeInMilliseconds());
         dateLocationView.setText(date);
 
         //find time
         TextView timeOffsetView = (TextView) listItemView.findViewById(R.id.time);
-        timeOffsetView.setText(time);
+        String timeRemovedLastLetter = removeLastChar(time);
+        timeOffsetView.setText(timeRemovedLastLetter);
 
         return listItemView;
     }
@@ -70,5 +71,8 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
 
     //date as
     //2018-04-22T18:03:48Z
+    private static String removeLastChar(String str) {
+        return str.substring(0, str.length() - 1);
+    }
 
 }
