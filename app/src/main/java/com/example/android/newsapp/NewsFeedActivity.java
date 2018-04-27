@@ -22,7 +22,7 @@ public class NewsFeedActivity extends AppCompatActivity implements LoaderManager
     private static final String LOG_TAG = NewsFeedActivity.class.getName();
     // URL for news data from the guardian dataset
     private static final String GUARDIAN_REQUEST_URL =
-            "https://content.guardianapis.com/search?api-key=24eedf15-b45e-4956-82a8-41bf7b52ade7";
+            "https://content.guardianapis.com/search?&show-tags=contributor&q=debates&api-key=24eedf15-b45e-4956-82a8-41bf7b52ade7";
     //adapter
     private NewsFeedAdapter mAdapter;
     //constant value for the loader id
