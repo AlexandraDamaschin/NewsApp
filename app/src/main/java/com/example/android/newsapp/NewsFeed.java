@@ -6,13 +6,15 @@ public class NewsFeed {
     private String mSection;
     private String mTimeInMilliseconds;
     private String mUrl;
+    private String mAuthor;
 
     //constructor
-    public NewsFeed(String title, String section, String timeInMilliseconds, String url) {
+    public NewsFeed(String title, String section, String timeInMilliseconds, String url, String author) {
         mTitle = title;
         mSection = section;
         mTimeInMilliseconds = timeInMilliseconds;
         mUrl = url;
+        mAuthor = author;
     }
 
     //get title
@@ -33,5 +35,10 @@ public class NewsFeed {
     //get url
     public String getUrl() {
         return mUrl;
+    }
+
+    //get author
+    public String getAuthor() {
+        return mAuthor;
     }
 }

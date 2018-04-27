@@ -146,10 +146,16 @@ public class QueryUtils {
             //which represent a list of features
             JSONArray newsFeedArray = response.getJSONArray("results");
 
+            //tags
+            JSONArray tagsArray = response.getJSONArray("tags");
+
             // For each new in the newsFeedArray, create an {@link NewsFeed} object
             for (int i = 0; i < newsFeedArray.length(); i++) {
                 //Get a single newsFeed
                 JSONObject currentNewsFeed = newsFeedArray.getJSONObject(i);
+
+                //get a single tag
+                JSONObject currentTag = tagsArray.getJSONObject(i);
 
                 //extract value for webTitle
                 String title = currentNewsFeed.getString("webTitle");
@@ -167,8 +173,12 @@ public class QueryUtils {
                 String url = currentNewsFeed.getString("webUrl");
                 Log.d("webUrl", "Value: " + url);
 
+                //extract author
+                String author = currentTag.getString("webTitle");
+                Log.d("tags", "Value: " + author);
+
                 //create new object with title, section, timeInMilliseconds and url for the response
-                NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url);
+                NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url, author);
 
                 //add new object to the list
                 newsFeeds.add(newsFeed);

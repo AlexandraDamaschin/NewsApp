@@ -62,6 +62,10 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
         String timeRemovedLastLetter = removeLastChar(time);
         timeOffsetView.setText(timeRemovedLastLetter);
 
+        //find author
+        TextView authorView = (TextView) listItemView.findViewById(R.id.author_name);
+        titleView.setText(currentNewsFeed.getAuthor());
+
         return listItemView;
     }
 
