@@ -173,6 +173,7 @@ public class QueryUtils {
                 String url = currentNewsFeed.getString("webUrl");
                 Log.d("webUrl", "Value: " + url);
 
+                //if author exists
                 if(tagsObject.has("webTitle")) {
                     //extract author
                     String author = tagsObject.getString("webTitle");
