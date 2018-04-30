@@ -153,9 +153,16 @@ public class QueryUtils {
 
                 //get tags array
                 JSONArray tagsArray = currentNewsFeed.getJSONArray("tags");
-
+                String author = "";
                 //get tags object
-                JSONObject tagsObject = tagsArray.getJSONObject(i);
+                if (tagsArray.length() != 0) {
+                    JSONObject tagsObject = tagsArray.getJSONObject(0);
+                    //if author exists
+                    if (tagsObject.has("webTitle")) {
+                        author = tagsObject.getString("webTitle");
+                        Log.d("tagsObject", "Value: " + author);
+                    }
+                }
 
                 //extract value for webTitle
                 String title = currentNewsFeed.getString("webTitle");
@@ -172,13 +179,6 @@ public class QueryUtils {
                 //extract webUrl
                 String url = currentNewsFeed.getString("webUrl");
                 Log.d("webUrl", "Value: " + url);
-
-                //if author exists
-                if(tagsObject.has("webTitle")) {
-                    //extract author
-                    String author = tagsObject.getString("webTitle");
-                    Log.d("tags", "Value: " + author);
-                }
 
                 //create new object with title, section, timeInMilliseconds and url for the response
                 NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url, author);
