@@ -181,7 +181,7 @@ public class QueryUtils {
                 Log.d("webUrl", "Value: " + url);
 
                 //display just news with author
-                if(!author.isEmpty()) {
+                if (!author.isEmpty()) {
                     //create new object with title, section, timeInMilliseconds and url for the response
                     NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url, author);
 
