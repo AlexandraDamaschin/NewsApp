@@ -37,6 +37,11 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
         TextView sectionView = (TextView) listItemView.findViewById(R.id.section_name);
         sectionView.setText(currentNewsFeed.getSection());
 
+        //find author
+        TextView authorView = (TextView) listItemView.findViewById(R.id.author_name);
+        authorView.setText(currentNewsFeed.getAuthor());
+
+
         //get date as 2018-04-22T18:03:48Z
         String originalDate = currentNewsFeed.getTimeInMilliseconds();
         String date = "";
@@ -61,11 +66,6 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeed> {
         TextView timeOffsetView = (TextView) listItemView.findViewById(R.id.time);
         String timeRemovedLastLetter = removeLastChar(time);
         timeOffsetView.setText(timeRemovedLastLetter);
-
-        //find author
-        TextView authorView = (TextView) listItemView.findViewById(R.id.author_name);
-        titleView.setText(currentNewsFeed.getAuthor());
-
         return listItemView;
     }
 
