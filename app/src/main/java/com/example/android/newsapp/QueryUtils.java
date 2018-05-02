@@ -187,6 +187,12 @@ public class QueryUtils {
 
                     //add new object to the list
                     newsFeeds.add(newsFeed);
+                }else{
+                    //create new object with title, section, timeInMilliseconds and url for the response
+                    NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url, "");
+
+                    //add new object to the list
+                    newsFeeds.add(newsFeed);
                 }
             }
 
