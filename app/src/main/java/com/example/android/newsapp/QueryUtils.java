@@ -180,11 +180,14 @@ public class QueryUtils {
                 String url = currentNewsFeed.getString("webUrl");
                 Log.d("webUrl", "Value: " + url);
 
-                //create new object with title, section, timeInMilliseconds and url for the response
-                NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url, author);
+                //display just news with author
+                if(!author.isEmpty()) {
+                    //create new object with title, section, timeInMilliseconds and url for the response
+                    NewsFeed newsFeed = new NewsFeed(title, section, timeInMilliseconds, url, author);
 
-                //add new object to the list
-                newsFeeds.add(newsFeed);
+                    //add new object to the list
+                    newsFeeds.add(newsFeed);
+                }
             }
 
         } catch (JSONException e) {
