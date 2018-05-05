@@ -7,4 +7,5 @@
     <string name="article_author">John Smith</string>
     <string name="article_date">Mar 6, 2010</string>
     <string name="article_time">3:00 PM</string>
+    <string name="settings_menu_item">Settings</string>
 </resources>
