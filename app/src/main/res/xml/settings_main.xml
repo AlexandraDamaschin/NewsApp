@@ -10,4 +10,11 @@
         android:key="@string/settings_order_by_key"
         android:title="@string/settings_order_by_label" />
 
+    <EditTextPreference
+        android:defaultValue="@string/settings_newest_default"
+        android:inputType="numberDecimal"
+        android:key="@string/settings_newest_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/settings_newest_label" />
+
 </PreferenceScreen>

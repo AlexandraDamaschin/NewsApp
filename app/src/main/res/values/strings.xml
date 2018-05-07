@@ -11,7 +11,8 @@
     <string name="settings_title">NewsFeed Settings</string>
     <string name="settings_newest_label">Newest</string>
     <string name="settings_newest_key" translatable="false">newest</string>
-    <string name="settings_newest_default" translatable="false">time</string>
+    <string name="settings_oldest_key" translatable="false">oldest</string>
+    <string name="settings_newest_default" translatable="false">newest</string>
     <!-- Strings For Order-By Preference-->
     <string name="settings_order_by_label">Order By</string>
     <string name="settings_order_by_key" translatable="false">order_by</string>
