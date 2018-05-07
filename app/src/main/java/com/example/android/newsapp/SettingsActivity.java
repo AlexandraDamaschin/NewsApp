@@ -1,6 +1,5 @@
 package com.example.android.newsapp;
 
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -24,8 +23,8 @@ public class SettingsActivity  extends AppCompatActivity {
             addPreferencesFromResource(R.xml.settings_main);
 
             //find preference and min magnitude
-            Preference minMagnitude = findPreference(getString(R.string.settings_newest_key));
-            bindPreferenceSummaryToValue(minMagnitude);
+            Preference newest = findPreference(getString(R.string.settings_newest_key));
+            bindPreferenceSummaryToValue(newest);
             //preferences order by
             Preference orderBy = findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(orderBy);

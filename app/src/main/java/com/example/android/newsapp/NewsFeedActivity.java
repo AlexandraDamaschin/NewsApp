@@ -37,7 +37,6 @@ public class NewsFeedActivity extends AppCompatActivity
     //text view for empty list
     private TextView mEmptyStateTextView;
 
-
     //on create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +144,7 @@ public class NewsFeedActivity extends AppCompatActivity
             View loadingIndicator = findViewById(R.id.loading_spinner);
             loadingIndicator.setVisibility(View.VISIBLE);
 
-            // Restart the loader to requery the USGS as the query settings have been updated
+            // Restart the loader to requery the guardian as the query settings have been updated
             getLoaderManager().restartLoader(NEWSFEED_LOADER_ID, null, this);
         }
     }
@@ -172,7 +171,6 @@ public class NewsFeedActivity extends AppCompatActivity
 
         // Append query parameter and its value.
         uriBuilder.appendQueryParameter("format", "geojson");
-        uriBuilder.appendQueryParameter("limit", "10");
         uriBuilder.appendQueryParameter("newest", newest);
         uriBuilder.appendQueryParameter("orderby", orderBy);
 
