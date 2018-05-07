@@ -24,7 +24,7 @@ public class SettingsActivity  extends AppCompatActivity {
             addPreferencesFromResource(R.xml.settings_main);
 
             //find preference and min magnitude
-            Preference minMagnitude = findPreference(getString(R.string.settings_min_magnitude_key));
+            Preference minMagnitude = findPreference(getString(R.string.settings_newest_key));
             bindPreferenceSummaryToValue(minMagnitude);
             //preferences order by
             Preference orderBy = findPreference(getString(R.string.settings_order_by_key));

@@ -4,11 +4,15 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,7 +21,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsFeedActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<NewsFeed>> {
+public class NewsFeedActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<List<NewsFeed>>,
+        SharedPreferences.OnSharedPreferenceChangeListener {
+
     //variables needed
     private static final String LOG_TAG = NewsFeedActivity.class.getName();
     // URL for news data from the guardian dataset
@@ -49,6 +56,12 @@ public class NewsFeedActivity extends AppCompatActivity implements LoaderManager
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         newsFeedListView.setAdapter(mAdapter);
+
+        // Obtain a reference to the SharedPreferences file for this app
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // And register to be notified of preference changes
+        // So we know when the user has adjusted the query settings
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
         //set an event on click listener
         //on click on a news open details in new window
@@ -96,9 +109,73 @@ public class NewsFeedActivity extends AppCompatActivity implements LoaderManager
         }
     }
 
+    //settings button
+    @Override
+    // This method initialize the contents of the Activity's options menu.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    //This method passes the MenuItem that is selected
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //determine which item was selected and what action to take
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if (key.equals(getString(R.string.settings_newest_key)) ||
+                key.equals(getString(R.string.settings_order_by_key))) {
+            // Clear the ListView as a new query will be kicked off
+            mAdapter.clear();
+
+            // Hide the empty state text view as the loading indicator will be displayed
+            mEmptyStateTextView.setVisibility(View.GONE);
+
+            // Show the loading indicator while new data is being fetched
+            View loadingIndicator = findViewById(R.id.loading_spinner);
+            loadingIndicator.setVisibility(View.VISIBLE);
+
+            // Restart the loader to requery the USGS as the query settings have been updated
+            getLoaderManager().restartLoader(NEWSFEED_LOADER_ID, null, this);
+        }
+    }
+
+
     //on create loader
     @Override
     public Loader<List<NewsFeed>> onCreateLoader(int i, Bundle bundle) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String newest = sharedPrefs.getString(
+                getString(R.string.settings_newest_key),
+                getString(R.string.settings_newest_default));
+        //order by
+        String orderBy = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value.
+        uriBuilder.appendQueryParameter("format", "geojson");
+        uriBuilder.appendQueryParameter("limit", "10");
+        uriBuilder.appendQueryParameter("newest", newest);
+        uriBuilder.appendQueryParameter("orderby", orderBy);
+
         return new NewsFeedLoader(this, GUARDIAN_REQUEST_URL);
     }
 
