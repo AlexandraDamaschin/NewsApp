@@ -10,6 +10,7 @@
         android:key="@string/settings_order_by_key"
         android:title="@string/settings_order_by_label" />
 
+    <!--this need to be deleted-->
     <EditTextPreference
         android:defaultValue="@string/settings_newest_default"
         android:inputType="numberDecimal"
