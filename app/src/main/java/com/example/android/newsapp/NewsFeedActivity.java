@@ -132,7 +132,7 @@ public class NewsFeedActivity extends AppCompatActivity
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-        if (key.equals(getString(R.string.settings_newest_key)) ||
+        if (key.equals(getString(R.string.settings_default_key)) ||
                 key.equals(getString(R.string.settings_order_by_key))) {
             // Clear the ListView as a new query will be kicked off
             mAdapter.clear();
@@ -155,13 +155,13 @@ public class NewsFeedActivity extends AppCompatActivity
     public Loader<List<NewsFeed>> onCreateLoader(int i, Bundle bundle) {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        String newest = sharedPrefs.getString(
-                getString(R.string.settings_newest_key),
-                getString(R.string.settings_newest_default));
+        String topic = sharedPrefs.getString(
+                getString(R.string.settings_topic_key),
+                getString(R.string.settings_default_key));
         //order by
         String orderBy = sharedPrefs.getString(
                 getString(R.string.settings_order_by_key),
-                getString(R.string.settings_order_by_default)
+                getString(R.string.settings_order_by_default_value)
         );
 
         // parse breaks apart the URI string that's passed into its parameter
@@ -170,9 +170,8 @@ public class NewsFeedActivity extends AppCompatActivity
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value.
-        uriBuilder.appendQueryParameter("format", "geojson");
-        uriBuilder.appendQueryParameter("newest", newest);
-        uriBuilder.appendQueryParameter("orderby", orderBy);
+        uriBuilder.appendQueryParameter("q", topic);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
 
         return new NewsFeedLoader(this, GUARDIAN_REQUEST_URL);
     }

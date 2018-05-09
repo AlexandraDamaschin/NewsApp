@@ -4,7 +4,7 @@
 
     <!--list of preferences -->
     <ListPreference
-        android:defaultValue="@string/settings_order_by_default"
+        android:defaultValue="@string/settings_order_by_default_value"
         android:entries="@array/settings_order_by_labels"
         android:entryValues="@array/settings_order_by_values"
         android:key="@string/settings_order_by_key"
@@ -12,10 +12,10 @@
 
     <!--this need to be deleted-->
     <EditTextPreference
-        android:defaultValue="@string/settings_newest_default"
+        android:defaultValue="@string/settings_default_key"
         android:inputType="text"
-        android:key="@string/settings_newest_key"
+        android:key="@string/settings_topic_key"
         android:selectAllOnFocus="true"
-        android:title="@string/settings_newest_label" />
+        android:title="@string/settings_topic_label" />
 
 </PreferenceScreen>
