@@ -7,21 +7,21 @@
     <string name="article_author">John Smith</string>
     <string name="article_date">Mar 6, 2010</string>
     <string name="article_time">3:00 PM</string>
+    <!--Menu strings-->
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">NewsFeed Settings</string>
-    <string name="settings_newest_label">Newest</string>
-    <string name="settings_newest_key" translatable="false">newest</string>
-    <string name="settings_oldest_key" translatable="false">oldest</string>
-    <string name="settings_newest_default" translatable="false">newest</string>
+    <!--Preferences Strings for topic-->
+    <string name="settings_topic_label">Topic</string>
+    <string name="settings_topic_key" translatable="false">topic_key</string>
+    <string name="settings_default_key" translatable="false">news</string>
     <!-- Strings For Order-By Preference-->
     <string name="settings_order_by_label">Order By</string>
-    <string name="settings_order_by_key" translatable="false">order_by</string>
-    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_newest_value</string>
+    <string name="settings_order_by_key" translatable="false">order_by_key</string>
+    <string name="settings_order_by_default_value" translatable="false">@string/settings_order_by_newest_value</string>
     <!-- Label for order-by newest option-->
     <string name="settings_order_by_newest_label">Newest</string>
-    <string name="settings_order_by_newest_value" translatable="false">time</string>
-
+    <string name="settings_order_by_newest_value" translatable="false">newest</string>
     <!-- Label for order-by oldest option -->
     <string name="settings_order_by_oldest_label">Oldest</string>
-    <string name="settings_order_by_oldest_value" translatable="false">time</string>
+    <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
 </resources>

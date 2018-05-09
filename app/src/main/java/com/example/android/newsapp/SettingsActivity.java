@@ -22,7 +22,7 @@ public class SettingsActivity  extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
-            //find preference and min magnitude
+            //find preference and newest news
             Preference newest = findPreference(getString(R.string.settings_newest_key));
             bindPreferenceSummaryToValue(newest);
             //preferences order by

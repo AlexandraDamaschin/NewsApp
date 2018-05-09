@@ -13,7 +13,7 @@
     <!--this need to be deleted-->
     <EditTextPreference
         android:defaultValue="@string/settings_newest_default"
-        android:inputType="numberDecimal"
+        android:inputType="text"
         android:key="@string/settings_newest_key"
         android:selectAllOnFocus="true"
         android:title="@string/settings_newest_label" />
