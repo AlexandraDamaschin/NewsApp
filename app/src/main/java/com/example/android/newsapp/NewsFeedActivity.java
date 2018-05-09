@@ -149,7 +149,6 @@ public class NewsFeedActivity extends AppCompatActivity
         }
     }
 
-
     //on create loader
     @Override
     public Loader<List<NewsFeed>> onCreateLoader(int i, Bundle bundle) {
@@ -171,9 +170,11 @@ public class NewsFeedActivity extends AppCompatActivity
 
         // Append query parameter and its value.
         uriBuilder.appendQueryParameter("q", topic);
+        //not to have to old news
+        uriBuilder.appendQueryParameter("from-date","2018-01-01");
         uriBuilder.appendQueryParameter("order-by", orderBy);
 
-        return new NewsFeedLoader(this, GUARDIAN_REQUEST_URL);
+        return new NewsFeedLoader(this, uriBuilder.toString());
     }
 
     //on load finish
