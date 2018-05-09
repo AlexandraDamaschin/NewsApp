@@ -171,8 +171,8 @@ public class NewsFeedActivity extends AppCompatActivity
         // Append query parameter and its value.
         uriBuilder.appendQueryParameter("q", topic);
         //not to have to old news
-        uriBuilder.appendQueryParameter("from-date","2018-01-01");
-        uriBuilder.appendQueryParameter("show-tags","contributor");
+        uriBuilder.appendQueryParameter("from-date", "2018-01-01");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("order-by", orderBy);
 
         return new NewsFeedLoader(this, uriBuilder.toString());
