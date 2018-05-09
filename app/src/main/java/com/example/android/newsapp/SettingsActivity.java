@@ -8,7 +8,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
-public class SettingsActivity  extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,19 +16,20 @@ public class SettingsActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
     }
 
-    public static class NewsFeedPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
+    public static class NewsFeedPreferenceFragment extends PreferenceFragment
+            implements Preference.OnPreferenceChangeListener {
+        //settings main
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
             //find preference and newest news
-            Preference newest = findPreference(getString(R.string.settings_newest_key));
-            bindPreferenceSummaryToValue(newest);
+            Preference topic = findPreference(getString(R.string.settings_topic_key));
+            bindPreferenceSummaryToValue(topic);
             //preferences order by
             Preference orderBy = findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(orderBy);
-
         }
 
         @Override
@@ -49,10 +50,15 @@ public class SettingsActivity  extends AppCompatActivity {
         }
 
         private void bindPreferenceSummaryToValue(Preference preference) {
+            //set Listener to preference
             preference.setOnPreferenceChangeListener(this);
+            //get context of preference
             SharedPreferences preferences =
                     PreferenceManager.getDefaultSharedPreferences(preference.getContext());
-            String preferenceString = preferences.getString(preference.getKey(), "");
+            //get String
+            String preferenceString =
+                    preferences.getString(preference.getKey(), "");
+            //apply it to onPreferenceChange method
             onPreferenceChange(preference, preferenceString);
         }
     }
