@@ -24,4 +24,7 @@
     <!-- Label for order-by oldest option -->
     <string name="settings_order_by_oldest_label">Oldest</string>
     <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
+    <!-- Label for order-by relevance option -->
+    <string name="settings_order_by_relevance_label">Relevance</string>
+    <string name="settings_order_by_relevance_value">relevance</string>
 </resources>
